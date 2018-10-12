@@ -34,9 +34,9 @@ Edit test_one_seq() in eval_speech.py with proper paths, then execute it. Genera
 
 If you use this code in your publications, please cite our paper:
 
-@inproceedings{
-author = {Hai X. Pham and Yuting Wang and Vladimir Pavlovic},
-title = {End-to-end Learning for 3D Facial Animation from Speech},
-booktitle = {International Conference on Multimodal Interaction},
-year = {2018}
+@inproceedings{  
+author = {Hai X. Pham and Yuting Wang and Vladimir Pavlovic},  
+title = {End-to-end Learning for 3D Facial Animation from Speech},  
+booktitle = {International Conference on Multimodal Interaction},  
+year = {2018}  
 }
