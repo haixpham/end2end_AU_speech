@@ -21,7 +21,7 @@ After that, you must edit proper paths in main() in train_end2end.py, and run th
 
 > python train_end2end.py [model_type]
 
-where model_type can be: --cnn / --gru / --lstm / --bigru / --bilstm. There are other options, feel free to adjust them to your liking.
+where model_type can be either: --cnn / --gru / --lstm / --bigru / --bilstm. There are other options (pls discover them in the code), feel free to adjust them to your liking.
 
 2. Evaluate a model:
 
@@ -31,7 +31,7 @@ Edit test_one_seq() in eval_speech.py with proper paths, then execute it. Genera
 
 * run extract_spectrogram.py to retrieve spectrograms. Again, please edit proper paths in this script.
 * download AU labels from here: [link](https://drive.google.com/open?id=1lhBKAHm2Vw_6MAdp6KK-uPVlXj_UBK-3)
-* run create_spectrogram_CTF.py to create CTF files. Rememver to edit paths.
+* run create_spectrogram_CTF.py to create CTF files. Remember to edit paths.
 
 If you use this code in your publications, please cite our paper:
 
