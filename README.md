@@ -6,8 +6,9 @@ Note that the learning rates in this code are different from ones used in the pa
 
 Our code is based on Python 3.6 and uses the following libraries:
 - CNTK for deep learning
-- librosa for image processing
+- librosa for speech processing
 - pyglet for 3D rendering
+- opencv
 - other libraries are included in Anaconda distribution.
 ---
 1. Train the model with provided CTF files
