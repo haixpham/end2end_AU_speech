@@ -6,6 +6,7 @@ This code is free to use for academic/research purpose.
 
 '''
 
+import plyfile
 import numpy as np
 import math
 
@@ -14,6 +15,50 @@ from pyglet.gl import *
 import ctypes
 from PIL import Image
 import cv2
+
+from SysUtils import is_Win32
+
+filename_template = "../shapes/shape_{:d}.ply"
+
+def load_shape(filename, load_triangles = False):
+    mesh = plyfile.PlyData.read(filename)
+    # convert vertices to numpy array
+    vertices = np.transpose(np.vstack((mesh['vertex']['x'],mesh['vertex']['y'],mesh['vertex']['z'])))
+    # get triangles
+    if load_triangles:
+        tridata = mesh['face'].data['vertex_indices']
+        triangles = plyfile.make2d(tridata)
+        return vertices, triangles
+    return vertices
+
+def load_shapes_raw(path=filename_template):
+    n = 47
+    shapes = []
+    triangles = None
+    for i in range(n):
+        filename = path.format(i)
+        if triangles is None:
+            shape, triangles = load_shape(filename, load_triangles=True)
+        else:
+            shape = load_shape(filename)
+        shapes.append(shape)
+    return shapes, triangles
+
+
+def load_shapes(path=filename_template):
+    shapes, triangles = load_shapes_raw(path)
+    # compact shapes into
+    shape_list = []
+    numvert = shapes[0].shape[0]
+    for i, shape in enumerate(shapes):
+        flat_shape = shape.flatten()
+        if i == 0:
+            shape_list.append(flat_shape)
+        else:
+            flat_shape = flat_shape - shape_list[0]
+            shape_list.append(flat_shape)
+    allshapes = np.stack(shape_list)
+    return allshapes, triangles
 
 
 def load_processed_baseshapes(filename=""):
@@ -88,6 +133,7 @@ class Renderer(object):
         self.height = height
         self.initGL()
         self.buffer = (GLubyte * (3*width*height))(0)
+        self.is_win32 = is_Win32()
 
     def initGL(self):
         glClearColor(1.0, 1.0, 1.0, 1.0)
@@ -177,7 +223,10 @@ class Renderer(object):
         self.win.flip()
 
     def capture_screen(self):
-        glReadBuffer(GL_FRONT)
+        if(self.is_win32):
+            glReadBuffer(GL_FRONT)
+        else:
+            glReadBuffer(GL_BACK)
         glReadPixels(0, 0, self.width, self.height, GL_RGB, GL_UNSIGNED_BYTE, self.buffer)
         image = Image.frombytes(mode="RGB", size=(self.width, self.height), data=self.buffer)
         image = image.transpose(Image.FLIP_TOP_BOTTOM)
