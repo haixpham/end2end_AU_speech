@@ -14,8 +14,8 @@ Our code is based on Python 3.6 and uses the following libraries:
 1. Train the model with provided CTF files
 
 We generate CNTK data text format files to speed up training. You can download them from the following links:
-* To train CNN model: [link](https://drive.google.com/open?id=18nve_2P-3x0i245pEsm-npxHVtED_Zis)
-* To train recurrent models: [link](https://drive.google.com/open?id=1xkoMQ7sxrDtU4oLq9VaXfWhNEigwF8zz)
+* To train CNN model: [link](https://1drv.ms/u/s!AsfrZCEaosem8NAhY6l-CLCc8sxOlw?e=f9sOC9)
+* To train recurrent models: [link](https://1drv.ms/u/s!AsfrZCEaosem8NAix81eOtEpVG_VAA?e=T2gVMF)
 
 After that, you must edit proper paths in main() in train_end2end.py, and run the following line:
 
@@ -30,10 +30,10 @@ Edit test_one_seq() in eval_speech.py with proper paths, then execute it. Genera
 3. Prepare data from scratch:
 
 * run extract_spectrogram.py to retrieve spectrograms. Again, please edit proper paths in this script.
-* download AU labels from here: [link](https://drive.google.com/open?id=1lhBKAHm2Vw_6MAdp6KK-uPVlXj_UBK-3)
+* download AU labels from here: [link](https://1drv.ms/u/s!AsfrZCEaosem8NAgfMTpfIKR8lKLfg?e=2Bw0pD)
 * run create_spectrogram_CTF.py to create CTF files. Remember to edit paths.
 
-If you use this code in your publications, please cite our paper:
+If you find this repository helpful, please cite our paper:
 
 @inproceedings{  
 author = {Hai X. Pham and Yuting Wang and Vladimir Pavlovic},  
